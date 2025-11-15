@@ -12,6 +12,7 @@ COPY docker/.env .
 RUN yarn cache clean
 RUN yarn install --network-timeout 1000000
 COPY . .
+COPY api/prisma/schema.prisma prisma/schema.prisma
 RUN yarn workspaces run build
 # Применяем миграцию
 RUN npx prisma migrate deploy
