@@ -13,4 +13,6 @@ RUN yarn cache clean
 RUN yarn install --network-timeout 1000000
 COPY . .
 RUN yarn workspaces run build
+# Применяем миграцию
+RUN npx prisma migrate deploy
 CMD ["node", "api/dist/index.js"]
